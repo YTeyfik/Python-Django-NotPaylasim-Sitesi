@@ -1,0 +1,30 @@
+İLK
+
+echo "# Python-Django-Yazokulu-notpaylas" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/YTeyfik/Python-Django-Yazokulu-notpaylas.git
+git push -u origin master
+
+git remote add origin https://github.com/YTeyfik/Python-Django-Yazokulu-notpaylas.git
+git push -u origin master
+
+Upgrade
+
+git add --all
+git commit -m "açıklama"
+git push -u origin master
+
+
+django-admin startproject ProjeNot
+python -m django --version 
+>pip install django 
+
+git init
+git status
+
+
+c:\Django\ProjeNot>git config --global user.name"YTeyfik"
+
+c:\Django\ProjeNot>git config --global user.email "teyo_2086@hotmail.com"
