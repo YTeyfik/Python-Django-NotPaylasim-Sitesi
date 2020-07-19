@@ -21,6 +21,8 @@ django-admin startproject ProjeNot
 python -m django --version 
 >pip install django 
 
+python manage.py runserver
+
 git init
 git status
 
