@@ -29,7 +29,3 @@ python manage.py createsuperuser
 git init
 git status
 
-
-c:\Django\ProjeNot>git config --global user.name"YTeyfik"
-
-c:\Django\ProjeNot>git config --global user.email "teyo_2086@hotmail.com"
