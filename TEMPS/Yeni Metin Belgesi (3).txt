@@ -19,10 +19,12 @@ git push -u origin master
 
 django-admin startproject ProjeNot
 python -m django --version 
->pip install django 
+pip install django 
 
 python manage.py runserver
 python manage.py migrate
+python manage.py makemigrations Note
+python manage.py createsuperuser
 
 git init
 git status
