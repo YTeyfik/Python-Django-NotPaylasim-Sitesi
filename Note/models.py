@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 from django.utils.safestring import mark_safe
-
+from ckeditor_uploader.fields import RichTextUploadingField
 
 class Category(models.Model):
     STATUS=(
@@ -38,7 +38,7 @@ class Note(models.Model):
     description = models.CharField(max_length=255)
     image = models.ImageField(blank=True,upload_to='images/')
     status = models.CharField(max_length=10, choices=STATUS)
-    detail=models.TextField()
+    detail=RichTextUploadingField()
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
     def __str__(self):
