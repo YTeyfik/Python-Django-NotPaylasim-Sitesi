@@ -33,11 +33,12 @@ class Note(models.Model):
         ('False', 'Hayır'),
     )
     category=models.ForeignKey(Category,on_delete=models.CASCADE)#category tablosu ile ilişki
-    title = models.CharField(max_length=100)
-    keywords = models.CharField(max_length=255)
-    description = models.CharField(max_length=255)
+    title = models.CharField(blank=True,max_length=100)
+    keywords = models.CharField(blank=True,max_length=255)
+    description = models.CharField(blank=True,max_length=255)
     image = models.ImageField(blank=True,upload_to='images/')
     status = models.CharField(max_length=10, choices=STATUS)
+    slug = models.SlugField(blank=True,max_length=100)
     detail=RichTextUploadingField()
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)

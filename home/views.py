@@ -1,13 +1,16 @@
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+
+from Note.models import Note
 from home.models import Setting, ContactFormu, ContactFormMessage
 
 
 # Create your views here.
 def index(request):
     setting= Setting.objects.get(pk=1)
-    context={'setting':setting}
+    sliderdata=Note.objects.all()[:3]
+    context={'setting':setting,'sliderdata':sliderdata}
     return render(request,'index.html' ,context)
 
 def about(request):
