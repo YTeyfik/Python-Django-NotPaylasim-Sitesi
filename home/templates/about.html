@@ -1,0 +1,17 @@
+{% extends "homebase.html" %}
+{% block title %}Hakkımızda {{ setting.company }}{% endblock %}
+{% block keywords %}{{ setting.keywords }}{% endblock %}
+
+{% block description %}{{ setting.description }}{% endblock %}
+
+{% block content %}
+<div class="all-title-box">
+		<div class="container text-center">
+			<h1>Hakkımızda<span class="m_1">Lorem Ipsum dolroin gravida nibh vel velit.</span></h1>
+		</div>
+	</div>
+
+    {{ setting.aboutus|safe }}
+
+{% endblock %}
+
