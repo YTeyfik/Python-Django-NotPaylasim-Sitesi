@@ -1,8 +1,10 @@
+
+
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
-from Note.models import Note
+from Note.models import Note,Category
 from home.models import Setting, ContactFormu, ContactFormMessage
 
 
@@ -10,17 +12,25 @@ from home.models import Setting, ContactFormu, ContactFormMessage
 def index(request):
     setting= Setting.objects.get(pk=1)
     sliderdata=Note.objects.all()[:3]
-    context={'setting':setting,'sliderdata':sliderdata}
+    category=Category.objects.all()
+
+    context={'setting':setting,
+             'category':category,
+             'page':'home',
+             'sliderdata':sliderdata}
     return render(request,'index.html' ,context)
 
 def about(request):
     setting= Setting.objects.get(pk=1)
-    context={'setting':setting}
+    category = Category.objects.all()
+
+    context={'setting':setting,'category': category}
     return render(request,'about.html' ,context)
 
 def reference(request):
     setting= Setting.objects.get(pk=1)
-    context={'setting':setting}
+    category = Category.objects.all()
+    context={'setting':setting,'category': category}
     return render(request, 'reference.html', context)
 def contact(request):
     if request.method=='POST':
@@ -37,6 +47,7 @@ def contact(request):
             return  HttpResponseRedirect('/contact')
 
     setting= Setting.objects.get(pk=1)
+    category = Category.objects.all()
     form=ContactFormu()
-    context={'setting':setting,'form':form}
+    context={'setting':setting,'form':form,'category': category}
     return render(request, 'contact.html', context)
