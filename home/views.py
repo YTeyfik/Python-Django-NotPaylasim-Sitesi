@@ -13,11 +13,17 @@ def index(request):
     setting= Setting.objects.get(pk=1)
     sliderdata=Note.objects.all()[:3]
     category=Category.objects.all()
-
+    daynotes=Note.objects.all()[:4]
+    lastnotes = Note.objects.all().order_by('-id')[:4]
+    randomnotes = Note.objects.all().order_by('?')[:4]
     context={'setting':setting,
              'category':category,
              'page':'home',
-             'sliderdata':sliderdata}
+             'sliderdata':sliderdata,
+             'daynotes':daynotes,
+             'lastnotes':lastnotes,
+             'randomnotes':randomnotes,
+             }
     return render(request,'index.html' ,context)
 
 def about(request):
