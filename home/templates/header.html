@@ -89,7 +89,7 @@
     <header class="top-navbar">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" aria-expanded="true" href="/">
                     <img src="{% static 'images/logo.png'%}" alt="" />
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-host" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
@@ -109,13 +109,13 @@
                                 <ul>
 
                                         <li>
-                                            <a class="dropdown-item" href="/category/{{ node.slug }}">{{ node.title }} </a>
+                                            <a class="dropdown-item" href="/category/{{ node.id }}/{{ node.slug }}">{{ node.title }} </a>
                                             <div>
 
                                                         <ul>
                                                             {% if not node.is_leaf_node %}
                                                                 <ul class="children">
-                                                                    <a  href="#">{{ children }} </a>
+                                                                    <a  href="category/{{ node.id }}/{{node.slug }}">{{ children }} </a>
                                                                 </ul>
                                                             {% endif %}
                                                         </ul>

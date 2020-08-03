@@ -32,6 +32,7 @@ def reference(request):
     category = Category.objects.all()
     context={'setting':setting,'category': category}
     return render(request, 'reference.html', context)
+
 def contact(request):
     if request.method=='POST':
         form=ContactFormu(request.POST)
@@ -51,3 +52,13 @@ def contact(request):
     form=ContactFormu()
     context={'setting':setting,'form':form,'category': category}
     return render(request, 'contact.html', context)
+
+def category_notes(request,id,slug):
+    category = Category.objects.all()
+    categorydata = Category.objects.get(pk=id)
+    notes=Note.objects.filter(category_id=id)
+    context={'notes':notes,
+             'category':category,
+             'categorydata':categorydata
+             }
+    return render(request,'notes.html',context)

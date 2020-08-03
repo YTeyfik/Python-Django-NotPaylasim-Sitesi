@@ -1,0 +1,41 @@
+{% extends "homebase.html" %}
+{% block title %}{{ categorydata.title}}Notlar {% endblock %}
+{% block keywords %}{{ categorydata.keywords }}{% endblock %}
+
+{% block description %}{{ categorydata.description }}{% endblock %}
+
+{% block content %}
+<div class="all-title-box">
+		<div class="container text-center">
+			<h1>Notlar<span class="m_1">Lorem Ipsum dolroin gravida nibh vel velit.</span></h1>
+		</div>
+	</div>
+
+    <div id="notes" class="section wb">
+        <div class="container">
+        <h2>{{ categorydata.title }} Notları</h2>
+        <hr>
+
+            <div class="row">
+                {% for rs in notes %}
+				<div class="col-lg-3 col-md-6 col-12">
+					<div class="our-team">
+						<div class="team-img">
+							<img src="{{ rs.image.url }}" alt="">
+
+						</div>
+						<div class="team-content">
+							<a href="/notes/{{ rs.id }}/{{ rs.slug }}"><h3 class="title">{{ rs.title }}</h3></a>
+							<span class="post">{{ rs.keywords }}</span>
+						</div>
+					</div>
+				</div>
+            {% endfor %}
+            </div>
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+
+
+{% endblock %}
+

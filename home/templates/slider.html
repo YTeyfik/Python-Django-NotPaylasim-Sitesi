@@ -6,11 +6,11 @@
   {% for rs in sliderdata %}
   <div class="mySlides">
     <div class="numbertext"></div>
-    <img src="{{ rs.image.url }}" alt="" style="width:100%">
+    <a href="/notes/{{ rs.id }}/{{ rs.slug }}"><img src="{{ rs.image.url }}" alt="" style="width:100%"></a>
     <div class="text">
         <h1>{{ rs.title }}</h1>
         <h3 class="flex-md-wrap">{{ rs.description }}</h3>
-        <a href="/Note/{{ rs.id }}/{{ rs.slug }}" class="btn-custom">Seç</a>
+
     </div>
   </div>
 {% endfor %}
