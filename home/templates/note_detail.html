@@ -7,13 +7,13 @@
 {% block content %}
     <div class="all-title-box">
         <div class="container text-center">
-            <h1>{{ note.slug }}</h1>
+            <h1>{{ note.title }}</h1>
         </div>
     </div>
     <hr>
     <div class="row">
 
-        <div class="col-lg-3 col-md-3 col-xl-3">
+        <div class="col-lg-12 col-md-12 col-xl-12">
             <div class="slideshow-container">
 
                 <!-- Full-width images with number and caption text -->
@@ -21,7 +21,7 @@
                     <div class="mySlides">
                         <div class="numbertext"></div>
                         <div class="image-blog">
-                            <img src="{{ rs.image.url }}" alt="" style="width:100%" height="100%" class="img-fluid">
+                            <img src="{{ rs.image.url }}" alt="" style="height: 500px" class="center">
                         </div>
 
                     </div>
@@ -31,26 +31,113 @@
             </div>
         </div>
 
-        <div class="col-lg-8 col-md-8 col-xl-8">
+        <div class="col-lg-12 col-md-12 col-xl-12">
             <div>
+                <hr>
+                <div class="warpper">
+                    <input class="radio" id="one" name="group" type="radio" checked>
+                    <input class="radio" id="two" name="group" type="radio">
+                    <input class="radio" id="three" name="group" type="radio">
+                    <div class="tabs">
+                        <label class="tab" id="one-tab" for="one">Description</label>
+                        <label class="tab" id="two-tab" for="two">Detail</label>
+                        <label class="tab" id="three-tab" for="three">Reviews</label>
+                    </div>
+                    <div class="panels">
+                        <div class="panel" id="one-panel">
+                            <div class="panel-title">{{ note.title }}</div>
+                            <p>{{ note.description }}</p>
+                        </div>
+                        <div class="panel" id="two-panel">
+                            <div class="panel-title"></div>
+                            <p>{{ note.detail|safe }}</p>
+                        </div>
 
-                <div class="course-title">
-                    <h2>{{ note.title }}</h2>
+                        <div class="panel" id="three-panel">
+                            <div class="panel-title"></div>
+                            {% for rs in comments %}
+                                <div>
+                                    <div>
+                                        <div><a href="#"><i class="fa fa-user-md"></i>{{ rs.user.first_name }}</a></div>
+                                        <div><a href="#"><i class="fa fa-clock-o"></i>{{ rs.create_at }}</a></div>
+                                        <div >
+                                            <i class="fa fa-star{% if rs.rate < 1 %}-o empty{% endif %}"></i>
+                                            <i class="fa fa-star{% if rs.rate < 2 %}-o empty{% endif %}"></i>
+                                            <i class="fa fa-star{% if rs.rate < 3 %}-o empty{% endif %}"></i>
+                                            <i class="fa fa-star{% if rs.rate < 4 %}-o empty{% endif %}"></i>
+                                            <i class="fa fa-star{% if rs.rate < 5 %}-o empty{% endif %}"></i>
+                                        </div>
+
+                                    </div>
+                                    <div><b>{{ rs.subject }}</b>
+                                        <p>{{ rs.comment }}</p>
+                                    </div>
+                                </div>
+
+
+                            {% endfor %}
+
+
+
+<div>
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div class="alert alert-{{ message.tags }}" role="alert">
+                                        {{ message }}
+                                    </div>
+
+                                {% endfor %}
+                            {% endif %}
+
+                                <form  action="/Note/addcomment/{{ note.id }}" method="post" >
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <input class="input" type="text" name="subject" id="id_subject" placeholder="Subject"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea class="input" name="comment" id="id_comment" placeholder="Your review"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-rating">
+                                            <strong class="text-uppercase">Your Rating</strong>
+                                            <div class="stars">
+                                                <input type="radio" id="star5" name="rate" value="5"/><label for="star5"></label>
+                                                <input type="radio" id="star4" name="rate" value="4"/><label for="star4"></label>
+                                                <input type="radio" id="star3" name="rate" value="3"/><label for="star3"></label>
+                                                <input type="radio" id="star2" name="rate" value="2"/><label for="star2"></label>
+                                                <input type="radio" id="star1" name="rate" value="1"/><label for="star1"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% if user.id is not None %}
+                                        <button class="primary-btn">Send Comment</button>
+                                    {% else %}
+                                        Yorum Eklemek için <a href="/login">login</a>  olunuz!
+
+                                    {% endif %}
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="course-desc">
-                    {{ note.detail|safe }}
-                </div>
-                <div class="course-rating">
-                    4.5
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-half"></i>
-                </div>
+
+
             </div>
+
         </div>
+
     </div>
 
-{% endblock %}
 
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

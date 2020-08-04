@@ -5,7 +5,8 @@ from django.contrib import admin
 from django.utils.html import format_html
 from mptt.admin import MPTTModelAdmin, DraggableMPTTAdmin
 
-from Note.models import Category, Note, Images
+from Note.models import Category, Note, Images, Comment
+
 
 class NoteImageInline(admin.TabularInline):
     model = Images
@@ -61,6 +62,14 @@ class CategoryAdmin2(DraggableMPTTAdmin):
         return instance.notes_cumulative_count
     related_notes_cumulative_count.short_description = 'Related notes (in tree)'
 
+
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ['subject','comment','note','user','status']
+    list_filter = ['status']
+
+
+
 admin.site.register(Category, CategoryAdmin2)
 admin.site.register(Note,NoteAdmin)
 admin.site.register(Images,ImagesAdmin)
+admin.site.register(Comment,CommentAdmin)

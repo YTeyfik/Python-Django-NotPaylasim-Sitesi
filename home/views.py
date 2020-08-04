@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
-from Note.models import Note, Category, Images
+from Note.models import Note, Category, Images, Comment
 from home.models import Setting, ContactFormu, ContactFormMessage
 
 
@@ -73,8 +73,10 @@ def note_detail(request,id,slug):
     category = Category.objects.all()
     note = Note.objects.get(pk=id)
     images=Images.objects.filter(note_id=id)
+    comments=Comment.objects.filter(note_id=id,status='True')
     context = {'category': category,
                'images':images,
                 'note': note,
+               'comments':comments,
                }
     return render(request,'note_detail.html',context)
