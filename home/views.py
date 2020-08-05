@@ -5,6 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 from Note.models import Note, Category, Images, Comment
+from home.forms import SearchForm
 from home.models import Setting, ContactFormu, ContactFormMessage
 
 
@@ -80,3 +81,18 @@ def note_detail(request,id,slug):
                'comments':comments,
                }
     return render(request,'note_detail.html',context)
+
+
+def note_search(request):
+    if request.method=='POST':
+        form=SearchForm(request.POST)
+        if form.is_valid():
+            category=Category.objects.all()
+            query=form.cleaned_data['query'] #formdan bilgiyi al
+            notes=Note.objects.filter(title__icontains=query) #select from like query
+            context={
+                'notes':notes,
+                'category':category,
+            }
+            return render(request,'notes_search.html',context)
+    return  HttpResponseRedirect('/')

@@ -18,7 +18,7 @@
             </div><!-- end title -->
 
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <div class="container">
                         <div class="section-title">
                             <h3 class="title">Iletişim Formu</h3>
@@ -31,7 +31,7 @@
                             {% endfor %}
                         {% endif %}
 
-                        <form action="" method="post">
+                        <form class="form-style-9" action="" method="post">
                             {% csrf_token %}
                             {{ form.as_p }}
                             <input type="submit" value="SEND FORM">

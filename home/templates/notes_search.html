@@ -1,0 +1,40 @@
+{% extends "homebase.html" %}
+{% block title %}Notes Search Results{{ setting.company }}{% endblock %}
+{% block keywords %}{{ categorydata.keywords }}{% endblock %}
+
+{% block description %}{{ categorydata.description }}{% endblock %}
+
+{% block content %}
+    <div class="all-title-box">
+        <div class="container text-center">
+            <h1>Hakkımızda<span class="m_1">Lorem Ipsum dolroin gravida nibh vel velit.</span></h1>
+        </div>
+    </div>
+    <hr>
+    <div class="section">
+        <div class="container">
+            <div class="row">
+
+                <table cellpadding="3" width="1200">
+                    <tr>
+                        <th>Image</th>
+                        <th>Note Name</th>
+                        <th>Category</th>
+                    </tr>
+                    {% for rs in notes %}
+                        <tr>
+                            <td><a href="/note/{{ rs.id }}/{{ rs.slug }}"><img src="{{ rs.image.url }}" style="width:300px;height: 180px " alt=""> </a></td>
+                            <td><h4 class="note-name"><a href="/note/{{ rs.id }}/{{ rs.slug }}">{{ rs.title }}</a></h4> </td>
+                            <td><a href="/category/{{ rs.category.id }}/{{ rs.category.slug }}">{{ rs.category }}</a></td>
+
+                        </tr>
+
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+    {{ setting.aboutus|safe }}
+
+{% endblock %}
+
