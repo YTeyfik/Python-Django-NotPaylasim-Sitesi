@@ -33,6 +33,7 @@ urlpatterns = [
     path('category/<int:id>/<slug:slug>/',views.category_notes, name='category_notes'),
     path('note/<int:id>/<slug:slug>/',views.note_detail, name='note_detail'),
     path('search/', views.note_search, name='note_search'),
+    path('search_auto/',views.note_search_auto,name='note_search_auto'),
 ]
 
 if settings.DEBUG: # new
