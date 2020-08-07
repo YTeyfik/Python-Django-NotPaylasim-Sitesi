@@ -1,0 +1,56 @@
+{% extends "homebase.html" %}
+{% block title %}Sign up {{ setting.company }}{% endblock %}
+{% block keywords %}{{ setting.keywords }}{% endblock %}
+
+{% block description %}{{ setting.description }}{% endblock %}
+
+{% block content %}
+<div class="all-title-box">
+		<div class="container text-center">
+			<h1>Sign Up</h1>
+		</div>
+	</div>
+<div id="contact" class="section wb">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="container">
+                        <div class="section-title" align="center">
+                            <h3 class="title">SignUp Formu</h3>
+                        </div>
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }}" role="alert" align="center">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                        <form class="form-style-9" action="" method="post">
+                            {% csrf_token %}
+                            {% for field in form %}
+                                <p>
+                                {{ field.label_tag }}<br>
+                                {{ field }}
+                                {% if field.help_text %}
+                                    <small style="color: grey">{{ field.help_text }}</small>
+                                {% endif %}
+                                {% for error in field.errors %}
+                                    <p style="color: red">{{ error }}</p>
+                                {% endfor %}
+                                </p>
+
+                            {% endfor %}
+                        <button type="submit">Sign Up</button>
+                        </form>
+
+                    </div>
+                </div><!-- end col -->
+
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+
+{% endblock %}
+
