@@ -28,6 +28,7 @@ urlpatterns = [
     path('references/',views.reference,name='references'),
     path('home/',include('home.urls')),
     path('Note/',include('Note.urls')),
+    path('user/',include('user.urls')),
     path('admin/', admin.site.urls),
     path('ckeditor/',include('ckeditor_uploader.urls')),
     path('category/<int:id>/<slug:slug>/',views.category_notes, name='category_notes'),
@@ -37,6 +38,7 @@ urlpatterns = [
     path('logout/',views.logout_view,name='logout_view'),
     path('login/',views.login_view,name='login_view'),
     path('signup/',views.signup_view,name='signup_view'),
+
 ]
 
 if settings.DEBUG: # new

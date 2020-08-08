@@ -81,7 +81,7 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
     def user_name(self):
-        return '['+self.user.username+ '] ' +self.user.first_name
+        return self.user.first_name + self.user.last_name
 
     def image_tag(self):
         if self.image:

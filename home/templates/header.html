@@ -77,13 +77,12 @@
                     <ul class="nav navbar-nav navbar-collapse">
                         {% if user.id is not None %}
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle">{{ user.first_name }} </a>
-
+                               <a class="nav-link dropdown-toggle"> <i class="fa fa-user"></i>{{ user.first_name }} </a>
                             <div class="dropdown-menu" >
 
 
                             <ul>
-                            <li class="dropdown-item"><a href="#"><i class="fa fa-user"></i>My Account </a> </li>
+                            <li class="dropdown-item"><a href="/user"><i class="fa fa-user"></i>My Account </a> </li>
                             <li class="dropdown-item"><a href="#"><i class="fa fa-user"></i>My Wishlist </a> </li>
                             <li class="dropdown-item"><a href="#"><i class="fa fa-user"></i>My Nots </a> </li>
                             <li class="dropdown-item"><a href="#"><i class="fa fa-user"></i>My Comments </a> </li>
