@@ -1,0 +1,62 @@
+{% extends "homebase.html" %}
+{% block title %} {{ profile.user_name }} Profile {% endblock %}
+{% block keywords %}{{ setting.keywords }}{% endblock %}
+
+{% block description %}{{ setting.description }}{% endblock %}
+
+{% block content %}
+    <div class="all-title-box">
+        <div class="container text-center">
+            <h1>User Profile<span class="m_1">Lorem Ipsum dolroin gravida nibh vel velit.</span></h1>
+        </div>
+    </div>
+    <div id="contact" class="section wb">
+        <div class="container">
+
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="container">
+                        <div class="map-box">
+                            <h2 class="title">User Panel</h2>
+                        </div>
+                        {% include "user_panel.html" %}
+
+
+                    </div>
+                </div><!-- end col -->
+                <div class="col-md-9">
+                    <div class="map-box">
+                        <h2 class="title">User Information</h2>
+                        <div class="content">
+
+                            <div class="media">
+
+                                <img src="{{ profile.image.url }}" style="width: 150px;height: 200px " alt="">
+                            </div>
+
+                            <form method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <fieldset class="form-group">
+                                    {{ user_form.as_p }}
+                                    {{ profile_form.as_p }}
+
+                                </fieldset>
+                                <div class="form-group">
+                                    <button class="btn-custom" type="submit">Update</button>
+                                </div>
+
+                            </form>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+
+{% endblock %}
+
