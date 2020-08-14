@@ -1,6 +1,34 @@
 {% load static %}
 <div id="notes" class="section wb">
     <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="section-title">
+                    <h3 class="title">Haberler</h3>
+                    <hr>
+                </div>
+                <ul class="list">
+                    {% for rs in news %}
+                        <li><a href="/content/{{ rs.id }}/{{ rs.slug }}">{{ rs.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <div class="section-title">
+                    <h3 class="title">Duyurular</h3>
+                    <hr>
+                </div>
+                <ul class="list">
+                    {% for rs in announcements %}
+                        <li><a href="/content/{{ rs.id }}/{{ rs.slug }}">{{ rs.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <hr>
+    </div>
+
+    <div class="container">
 
         <h2>Günün Notları</h2>
         <hr>

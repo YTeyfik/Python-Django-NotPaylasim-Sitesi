@@ -7,6 +7,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 from Note.models import Note, Category, Images, Comment
+from content.models import Content, Menu, CImages
 from home.forms import SearchForm, SignUpForm
 from home.models import Setting, ContactFormu, ContactFormMessage
 
@@ -16,11 +17,17 @@ def index(request):
     setting= Setting.objects.get(pk=1)
     sliderdata=Note.objects.all()[:3]
     category=Category.objects.all()
+    menu=Menu.objects.all()
     daynotes=Note.objects.all()[:4]
     lastnotes = Note.objects.all().order_by('-id')[:4]
     randomnotes = Note.objects.all().order_by('?')[:4]
+    news=Content.objects.filter(type='haber').order_by('-id')[:4]
+    announcements=Content.objects.filter(type='duyuru').order_by('-id')[:4]
     context={'setting':setting,
              'category':category,
+             'news':news,
+             'announcements':announcements,
+             'menu':menu,
              'page':'home',
              'sliderdata':sliderdata,
              'daynotes':daynotes,
@@ -160,3 +167,28 @@ def signup_view(request):
     }
 
     return render(request,'signup.html',context)
+
+def menu(request,id):
+    try:
+        content=Content.objects.get(menu_id=id)
+        link='/content/'+str(content.id)+'menu'
+        return HttpResponseRedirect(link)
+    except:
+        messages.warning(request,"Hata!")
+        link ='/'
+        return HttpResponseRedirect(link)
+
+def contentdetail(request,id,slug):
+    category=Category.objects.all()
+    menu=Menu.objects.all()
+    content=Content.objects.get(pk=id)
+    images=CImages.objects.filter(content_id=id)
+
+
+    context={
+        'content':content,
+        'category':category,
+        'menu':menu,
+        'images':images,
+    }
+    return render(request,'content_detail.html',context)

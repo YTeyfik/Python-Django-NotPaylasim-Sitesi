@@ -1,0 +1,24 @@
+{% extends "homebase.html" %}
+{% block title %} {{ content.title }}{% endblock %}
+{% block keywords %}{{ setting.keywords }}{% endblock %}
+
+{% block description %}{{ setting.description }}{% endblock %}
+
+{% block content %}
+    <div class="all-title-box">
+        <div class="container text-center">
+            <h1>{{ content.title }}<span class="m_1"></span></h1>
+        </div>
+    </div>
+    <div>
+        <img src="{{ content.image.url }}" height="300" align="left" style="padding: 10px;border-radius: 25px;border: 30px">
+        {{ content.detail|safe }}
+        <hr>
+        {% for rs in images %}
+
+            <img src="{{ rs.image.url }}" height="200" alt="">
+
+        {% endfor %}
+    </div>
+{% endblock %}
+
