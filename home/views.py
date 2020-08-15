@@ -21,8 +21,8 @@ def index(request):
     daynotes=Note.objects.all()[:4]
     lastnotes = Note.objects.all().order_by('-id')[:4]
     randomnotes = Note.objects.all().order_by('?')[:4]
-    news=Content.objects.filter(type='haber').order_by('-id')[:4]
-    announcements=Content.objects.filter(type='duyuru').order_by('-id')[:4]
+    news=Content.objects.filter(type='haber',status='True').order_by('-id')[:4]
+    announcements=Content.objects.filter(type='duyuru',status='True').order_by('-id')[:4]
     context={'setting':setting,
              'category':category,
              'news':news,

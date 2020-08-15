@@ -1,0 +1,71 @@
+{% extends "homebase.html" %}
+{% block title %} User Contents {% endblock %}
+{% block keywords %}{{ setting.keywords }}{% endblock %}
+
+{% block description %}{{ setting.description }}{% endblock %}
+
+{% block content %}
+<div class="all-title-box">
+		<div class="container text-center">
+			<h1>User Comments<span class="m_1">Lorem Ipsum dolroin gravida nibh vel velit.</span></h1>
+		</div>
+	</div>
+<div id="contact" class="section wb">
+        <div class="container">
+
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="container">
+                        <div class="map-box">
+                            <h2 class="title">User Panel</h2>
+                        </div>
+                        {% include "user_panel.html" %}
+
+
+                    </div>
+                </div><!-- end col -->
+				<div class="col-md-9">
+					<div class="map-box">
+                        <h2 class="title">User Content List <a class="btn-custom" href="/user/addcontent">Add Content</a> </h2>
+<table class="table">
+
+    <tr>
+        <th class="text-left">Image</th>
+        <th class="text-left">Title</th>
+        <th class="text-left">Type</th>
+        <th class="text-left">Menu</th>
+        <th class="text-left">Status</th>
+        <th class="text-left">Date</th>
+        <th class="text-left">Detail</th>
+
+    </tr>
+    {% for rs in contents %}
+    <tr>
+        <td class="text-left">
+            <a href="/content/{{ rs.id }}/slug">
+            <img src="{{ rs.image.url }}" style="height: 30px" alt="">
+            </a>
+        </td>
+        <td class="text-left">{{ rs.title }}</td>
+        <td class="text-left">{{ rs.type }}</td>
+        <td class="text-left">{{ rs.menu.title }}</td>
+        <td class="text-left">{{ rs.status }}</td>
+        <td class="text-left">{{ rs.create_at }}</td>
+        <td class="text-left"><a class="btn-custom" href="/user/contentedit/{{ rs.id }}" >Edit</a></td>
+        <td class="text-left"><a onclick="return confirm('Delete! Are you sure?')" class="btn-custom" href="/user/contentdelete/{{ rs.id }}">Delete</a></td>
+    </tr>
+
+{% endfor %}
+
+</table>
+
+					</div>
+				</div>
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+
+{% endblock %}
+
