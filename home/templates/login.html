@@ -18,13 +18,7 @@
                         <div class="section-title" align="center">
                             <h3 class="title">Login Formu</h3>
                         </div>
-                        {% if messages %}
-                            {% for message in messages %}
-                                <div class="alert alert-{{ message.tags }}" role="alert" align="center">
-                                    {{ message }}
-                                </div>
-                            {% endfor %}
-                        {% endif %}
+
 
                         <form class="form-style-9" action="" method="post">
                             {% csrf_token %}
