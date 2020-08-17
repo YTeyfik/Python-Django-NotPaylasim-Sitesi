@@ -11,16 +11,17 @@ from content.models import Menu, Content, ContentForm
 from home.models import UserProfile
 from user.forms import UserUpdateForm, ProfileUpdateForm
 
-
+@login_required(login_url='/login')
 def index(request):
     category=Category.objects.all()
     current_user=request.user
-    profile=UserProfile.objects.get(pk=current_user.id)
+    profile=UserProfile.objects.get(user_id=current_user.id)
     context={'category':category,
              'profile':profile,
              }
     return render(request,'user_profile.html',context)
 
+@login_required(login_url='/login')
 def user_update(request):
     if request.method=='POST':
         user_form=UserUpdateForm(request.POST,instance=request.user) #request user is user session data
@@ -44,6 +45,7 @@ def user_update(request):
         }
         return  render(request,'user_update.html',context)
 
+@login_required(login_url='/login')
 def change_password(request):
     if request.method == 'POST':
         form=PasswordChangeForm(request.user,request.POST)
