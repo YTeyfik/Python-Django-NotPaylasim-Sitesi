@@ -37,10 +37,10 @@ class Menu(MPTTModel):
         return ' / '.join(full_path[::-1])
 
 TYPE=(
-        ('menu','menu'),
-        ('haber','haber'),
+
+        ('not','not'),
         ('duyuru','duyuru'),
-        ('etkinlik','etkinlik')
+
     )
 
 class Content(models.Model):
@@ -50,7 +50,6 @@ class Content(models.Model):
         ('False', 'Hayır'),
     )
     user=models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
-    menu=models.OneToOneField(Menu,null=True,blank=True,on_delete=models.CASCADE)
     type=models.CharField(max_length=10,choices=TYPE)
     title=models.CharField(max_length=150)
     keywords=models.CharField(blank=True,max_length=255)

@@ -17,17 +17,17 @@ def index(request):
     setting= Setting.objects.get(pk=1)
     sliderdata=Note.objects.all()[:3]
     category=Category.objects.all()
-    menu=Menu.objects.all()
+
     daynotes=Note.objects.all()[:4]
     lastnotes = Note.objects.all().order_by('-id')[:4]
     randomnotes = Note.objects.all().order_by('?')[:4]
-    news=Content.objects.filter(type='haber',status='True').order_by('-id')[:4]
+    news=Content.objects.filter(type='not',status='True').order_by('-id')[:4]
     announcements=Content.objects.filter(type='duyuru',status='True').order_by('-id')[:4]
     context={'setting':setting,
              'category':category,
              'news':news,
              'announcements':announcements,
-             'menu':menu,
+
              'page':'home',
              'sliderdata':sliderdata,
              'daynotes':daynotes,
